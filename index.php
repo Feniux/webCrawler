@@ -1,14 +1,14 @@
 <?php
 require 'simple_html_dom/simple_html_dom.php';
-$html = file_get_html("https://www.voegol.com.br/pt/sua-viagem/ofertas/ofertas-da-semana");
-/*$html = file_get_html("https://www.latam.com/pt_br/");*/
+/*$html = file_get_html("https://www.voegol.com.br/pt/sua-viagem/ofertas/ofertas-da-semana");
 
 foreach($html->find('table') as $table);
-/*foreach ($html->find('div') as $div);*/
 
 echo $table;
-/*echo $div;*/
 
+include 'azul.php';
+ echo "<br />";*/
+include 'latam.php';
 
 //extract data from the post extract($_POST); 
 //set POST variables 
