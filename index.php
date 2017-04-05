@@ -19,15 +19,11 @@
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 
 <script>
-	$('#azul').hide();
-	$('#avianca').hide();
-	$('#gol').show();
     $('#myTab a').click(function (e) {
       e.preventDefault();
       $(this).tab('show');
     });
-
-    $('a.btn.btn-default.pull-right').hide();
+    
 </script>
 
 </header>
@@ -38,8 +34,8 @@
 
 		<ul id="myTab" class="nav nav-tabs">
 			
-			<li class="active"><a href="#gol" data-toggle="tab"><strong>GOL</strong></a></li>
-			<li class=""><a href="#azul" data-toggle="tab"><strong>AZUL</strong></a></li>
+			<li class=""><a href="#gol" data-toggle="tab"><strong>GOL</strong></a></li>
+			<li class="active"><a href="#azul" data-toggle="tab"><strong>AZUL</strong></a></li>
 			<li class=""><a href="#avianca" data-toggle="tab"><strong>AVIANCA</strong></a></li> 
 		</ul>
 
@@ -58,7 +54,11 @@
 			<div class="tab-pane fade active in" id="azul">
 
 
-				<?php for($i = 0; $i < count($azul_textos); $i++){
+				<?php 
+
+					for($i = 0; $i < count($ofer[1]); $i++)
+						if(!empty($ofer[1][$i])) echo $ofer[1][$i].'<br />';
+					/*for($i = 0; $i < count($azul_textos); $i++){
 
 						if(!empty($azul_textos[$i]))
 							echo $azul_textos[$i];
@@ -74,7 +74,7 @@
 							else
 								echo "AZUL Preços- posição array vazia";
 
-						}
+						}*/
 				?>
 			
 			</div>
@@ -98,7 +98,7 @@
 </body>
 
 <footer>
-
+	<script> $('a.btn.btn-default.pull-right').hide(); </script>
 </footer>
 
 </html>
