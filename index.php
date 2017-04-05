@@ -4,10 +4,10 @@
 <header>
 	
 	<?php
-	require 'simple_html_dom/simple_html_dom.php';
-	include 'gol.php';
+	
+	/*
 	include 'azul.php';
-	include 'avianca.php';
+	include 'avianca.php';*/
 	?>
 
 <link href="css/bootstrap.css" rel="stylesheet">
@@ -18,14 +18,6 @@
 <script type="text/javascript" src="js/bootstrap.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 
-<script>
-    $('#myTab a').click(function (e) {
-      e.preventDefault();
-      $(this).tab('show');
-    });
-    
-</script>
-
 </header>
 
 <body>
@@ -34,61 +26,39 @@
 
 		<ul id="myTab" class="nav nav-tabs">
 			
-			<li class=""><a href="#gol" data-toggle="tab"><strong>GOL</strong></a></li>
-			<li class="active"><a href="#azul" data-toggle="tab"><strong>AZUL</strong></a></li>
-			<li class=""><a href="#avianca" data-toggle="tab"><strong>AVIANCA</strong></a></li> 
+			<li class=""><a id="id_gol" href="#gol" data-toggle="tab"><strong>GOL</strong></a></li>
+			<li class=""><a id="id_azul" href="#azul" data-toggle="tab"><strong>AZUL</strong></a></li>
+			<li class=""><a id="id_avianca" href="#avianca" data-toggle="tab"><strong>AVIANCA</strong></a></li> 
 		</ul>
 
 		<div id="myTabContent" class="tab-content">
 
-			<div class="tab-pane fade" id="gol">
+			<img id="img_load" src="img/load.gif" style="width: 10%;margin: 5% 0% 0% 45%; display:none;" />
 
-				<?php for($l = 0; $l < count($gol); $l++)
-						if( !empty(strip_tags($gol[$l]))  && (strip_tags($gol[$l]) != 'Compre aqui ' || strip_tags($gol[$l]) != 'Compre aqui') ){
-							echo $gol[$l];
-						}
-				?>
+			
+			<div class="tab-pane fade" id="gol"></div>
 
-			</div>
 			
 			<div class="tab-pane fade active in" id="azul">
 
-
-				<?php 
-
-					for($i = 0; $i < count($ofer[1]); $i++)
-						if(!empty($ofer[1][$i])) echo $ofer[1][$i].'<br />';
-					/*for($i = 0; $i < count($azul_textos); $i++){
-
-						if(!empty($azul_textos[$i]))
-							echo $azul_textos[$i];
-						else
-							echo "AZUL Textos- posição array vazia";
-
-						}
-
-						for($m = 0; $m < count($azul_precos); $m++){
-
-							if(!empty($azul_precos[$m]))
-								echo $azul_precos[$m];
-							else
-								echo "AZUL Preços- posição array vazia";
-
-						}*/
-				?>
+				<table id="table_azul" class="table table-striped table-hover table-responsive"></table>				
 			
 			</div>
+
 			
 			<div class="tab-pane fade active in" id="avianca">
 				
-				<?php for($j = 0; $j < count($avianca); $j++){
+				<table id="table_avianca">
+
+				</table>
+				<?php /*for($j = 0; $j < count($avianca); $j++){
 
 						if(!empty($avianca[$j]))
 							echo $avianca[$j];
 						else
 							echo "AVIANCA - posição array vazia";
 
-					}
+					}*/
 				?>
 
 			</div>
@@ -98,7 +68,120 @@
 </body>
 
 <footer>
-	<script> $('a.btn.btn-default.pull-right').hide(); </script>
+	<script> 
+
+		$(document).ready(function(){			
+
+			//Ativa transição de links
+				$('#myTab a').click(function (e) {
+					e.preventDefault();
+					$(this).tab('show');
+			    });
+			
+
+			//requisição GOL
+				$('#id_gol').on('click', function(){
+
+					$.ajax({
+						type:"GET",
+						url: 'gol.php',
+						cache:false,
+						
+						beforeSend: function(){
+							$('#img_load').fadeIn();
+						},
+						
+						success: function(table_){
+
+							if(table_){
+
+								$('#img_load').fadeOut();
+
+								$('#gol').html(table_);
+
+								$('a.btn.btn-default.pull-right').hide();
+
+							}else{
+								$('#img_load').fadeOut();
+								$('#gol').html('Não houve êxito em obter resultados!');
+							}
+
+						},
+
+					});
+					
+
+				});
+
+
+			//requisicao AZUL
+				$('#id_azul').on('click', function(){
+
+					$.ajax({
+						type:"GET",
+						url: 'azul.php',
+						cache:false,
+						
+						beforeSend: function(){
+							$('#img_load').fadeIn();
+						},
+						
+						success: function(table_){
+
+							if(table_){
+								$('#img_load').fadeOut();
+								$('#table_azul').html(table_);
+
+
+							}else{
+								$('#img_load').fadeOut();
+								$('#table_azul').html('Não houve êxito em obter resultados!');
+								
+							}
+
+						},
+
+					});
+					
+
+				});
+
+
+			//requisicao AVIANCA
+				$('#id_avianca').on('click', function(){
+
+					$.ajax({
+						type:"GET",
+						url: 'avianca.php',
+						cache:false,
+						
+						beforeSend: function(){
+							$('#img_load').fadeIn();
+						},
+						
+						success: function(table_){
+
+							if(table_){
+								$('#img_load').fadeOut();
+								$('#table_avianca').html(table_);
+
+
+							}else{
+								$('#img_load').fadeOut();
+								$('#table_avianca').html('Não houve êxito em obter resultados!');
+							}
+
+						},
+
+					});
+					
+
+				});
+
+		});
+
+
+	</script>
 </footer>
 
 </html>
