@@ -2,7 +2,9 @@
 
 require 'simple_html_dom/simple_html_dom.php';
 
+include 'azul.php';
 
+include 'avianca.php';
 
 /*GOL ==>*/
 
@@ -32,8 +34,26 @@ require 'simple_html_dom/simple_html_dom.php';
 /*AZUL ==>*/
 
 	echo "<strong><u>"."AZUL"."</strong></u>"."<br />";
-		include 'azul.php';
+		
 
+		for($i = 0; $i < count($azul_textos); $i++){
+
+			if(!empty($azul_textos[$i]))
+				echo $azul_textos[$i];
+			else
+				echo "AZUL Textos- posição array vazia";
+
+		}
+	echo "<br /><br />";
+
+		for($m = 0; $m < count($azul_precos); $m++){
+
+			if(!empty($azul_precos[$m]))
+				echo $azul_precos[$m];
+			else
+				echo "AZUL Preços- posição array vazia";
+
+		}
 	echo "<br /><br />";
 	echo "=====================================================";
 	echo "<br /><br />";
@@ -44,7 +64,14 @@ require 'simple_html_dom/simple_html_dom.php';
 /*AVIANCA ==>*/
 
 	echo "<strong><u>"."AVIANCA"."</strong></u>"."<br />";
-		include 'avianca.php';
+		for($j = 0; $j < count($avianca); $j++){
+
+			if(!empty($avianca[$j]))
+				echo $avianca[$j];
+			else
+				echo "AVIANCA - posição array vazia";
+
+		}
 
 
 
