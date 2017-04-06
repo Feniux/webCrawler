@@ -20,26 +20,21 @@ $array_result_azul[] = '<thead>'.
 
 for($i = 0; $i < count($ofer[1]); $i++){
 	
-
-	if($i < count($price_1[1])){
-
-		$pr = explode('R$', $price_1[1][$i]);
+	if($i < count($price_1[1]))
 
 		array_push($array_result_azul, 
 			'<tr>'.
 				'<td>'.$ofer[1][$i].'</td>'.
-				'<td>'.$pr[0].' R$'.$pr[1].'</td>'.
+				'<td>'.$price_1[1][$i].'</td>'.
 			'</tr>'
 		);
-	}
 
 	if($i >= count($price_1[1])){
 		$cc =0;
-		$pr2 = explode('R$', $price_2[1][$cc]);
 		array_push($array_result_azul, 
 			'<tr>'.
 				'<td>'.$ofer[1][$i].'</td>'.
-				'<td>'.$pr2[0].' R$'.$pr2[1].'</td>'.
+				'<td>'.$price_2[1][$cc].'</td>'.
 			'</tr>'
 		);
 		$cc++;

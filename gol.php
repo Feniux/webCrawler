@@ -10,7 +10,7 @@ foreach($html->find('table') as $z => $table)
 	$gol[$z] = $table;
 
 for($l = 0; $l < count($gol); $l++)
-	if( !empty(strip_tags($gol[$l])) ){
+	if( !empty(strip_tags($gol[$l]))  && (strip_tags($gol[$l]) != 'Compre aqui ' || strip_tags($gol[$l]) != 'Compre aqui') ){
 		echo $gol[$l];
 }
 
