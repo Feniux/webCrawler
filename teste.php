@@ -1,6 +1,10 @@
 <?php
 //http://simplehtmldom.sourceforge.net/
-	
+
+/*echo phpinfo();*/
+//strip_tags
+//https://www.latam.com/pt_br/
+
 	require_once 'simple_html_dom/simple_html_dom.php';
 
 	class Temperatura {
